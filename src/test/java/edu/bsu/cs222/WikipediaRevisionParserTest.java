@@ -6,6 +6,8 @@ import org.junit.jupiter.api.Test;
 import java.io.IOException;
 import java.io.InputStream;
 
+//Example code
+
 public class WikipediaRevisionParserTest {
 
     @Test

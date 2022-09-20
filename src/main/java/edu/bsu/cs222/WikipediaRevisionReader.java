@@ -9,6 +9,8 @@ import java.net.URLEncoder;
 import java.nio.charset.Charset;
 import java.util.Scanner;
 
+//Example code
+
 public class WikipediaRevisionReader {
     public static void main(String[] args) {
         WikipediaRevisionReader revisionReader = new WikipediaRevisionReader();
