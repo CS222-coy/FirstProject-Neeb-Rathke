@@ -16,12 +16,14 @@ public class WikipediaRevisionReader {
         WikipediaRevisionReader revisionReader = new WikipediaRevisionReader();
         Scanner scanner = new Scanner(System.in);
         String line = scanner.nextLine();
+
         try {
             String timestamp = revisionReader.getLastRevisionOf(line);
             System.out.println(timestamp);
         } catch (IOException ioException) {
             System.err.println("network failure" + ioException.getMessage());
         }
+
     }
 
     private String getLastRevisionOf(String articleTitle) throws IOException {

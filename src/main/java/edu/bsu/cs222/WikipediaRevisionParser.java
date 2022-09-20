@@ -7,8 +7,12 @@ import net.minidev.json.JSONArray;
 
 //Example code
 public class WikipediaRevisionParser {
-    public String parse(InputStream testDataStream) throws IOException {
+    //WikipediaRevisionParser now returns a revision object
+    public Revision parse(InputStream testDataStream) throws IOException {
+
         JSONArray result = (JsonPath.read(testDataStream, "$..timestamp"));
-        return result.get(0).toString();
+        Revision revision = new Revision("test", result.get(0).toString());
+        return revision;
     }
+
 }
