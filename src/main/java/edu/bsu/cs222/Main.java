@@ -17,7 +17,8 @@ public class Main {
 
         try {
             Revision[] Result = GetRevisions.getLastRevisions(line);
-            WikipediaRevisionFormatter.revisionFormatter(Result);
+            String output = RevisionFormatter.Formatter(Result);
+            System.out.println(output);
         } catch (IOException ioException) {
             System.err.println("network failure" + ioException.getMessage());
         }

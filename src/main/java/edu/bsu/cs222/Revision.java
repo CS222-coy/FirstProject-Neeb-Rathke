@@ -2,21 +2,21 @@ package edu.bsu.cs222;
 
 public class Revision {
 
-    private String author;
+    private String user;
     private String timeStamp;
 
-    public Revision(String author, String timeStamp) {
-        this.author = author;
+    public Revision(String user, String timeStamp) {
+        this.user = user;
         this.timeStamp = timeStamp;
     }
 
 
-    public String getAuthor() {
-        return author;
+    public String getUser() {
+        return user;
     }
 
     public void setAuthor(String author) {
-        this.author = author;
+        this.user = user;
     }
 
     public String getTimeStamp() {
