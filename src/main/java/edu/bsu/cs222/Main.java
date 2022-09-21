@@ -1,17 +1,40 @@
 package edu.bsu.cs222;
 
+import com.jayway.jsonpath.JsonPath;
+import net.minidev.json.JSONArray;
 
+import java.io.IOException;
+import java.io.InputStream;
 
-//TODO write a function to take name of wikipedia article as a string
-//TODO write a function to quarry wikipedia for the last 30 people to edit based on a input string
-//TODO write a revision class that contains a name and date
-//TODO write revisionParser function that takes in JSON that contains 30 or less names and times and returns a list of revision objects
-//TODO write RevisionFormatter function that takes a revision object and outputs a string formatted to specifications
+import java.net.URL;
+import java.net.URLConnection;
+import java.net.URLEncoder;
+import java.nio.charset.Charset;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Scanner;
+
+//TODO tell user about redirects
+//TODO make a system error if no name is given
+//TODO make an error for if there is no wikipedia page
+//TODO Finish writing tests
+//TODO Fix variable names
+//TODO Fix class names so they are standard
+
 public class Main {
     public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        String line = scanner.nextLine();
 
-
+        try {
+            GetRevisions getRevisions = new GetRevisions();
+            Revision[] Result = GetRevisions.getLastRevisions(line);
+            WikipediaRevisionFormatter wikipediaRevisionFormatter = new WikipediaRevisionFormatter();
+            WikipediaRevisionFormatter.revisionFormatter(Result);
+        } catch (IOException ioException) {
+            System.err.println("network failure" + ioException.getMessage());
+        }
     }
-
 
 }
