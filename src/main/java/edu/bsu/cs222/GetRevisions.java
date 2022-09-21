@@ -6,8 +6,8 @@ import java.net.URL;
 import java.net.URLConnection;
 
 public class GetRevisions {
-    public static Revision[] getLastRevisions(String articleTitle) throws IOException {
-        String urlString = String.format("https://en.wikipedia.org/w/api.php?action=query&format=json&prop=revisions&titles=%s&rvprop=timestamp|user&rvlimit=%d", articleTitle, 30);
+    public static Revision[] getLastRevisions(String articleTitle, int numberOfRevisions) throws IOException {
+        String urlString = String.format("https://en.wikipedia.org/w/api.php?action=query&format=json&prop=revisions&titles=%s&rvprop=timestamp|user&rvlimit=%d&redirects", articleTitle, numberOfRevisions);
         String urlStringEncoded = urlString.replaceAll(" ", "%20");
 
         URL url = new URL(urlStringEncoded);
