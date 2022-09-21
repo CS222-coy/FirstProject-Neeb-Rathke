@@ -5,14 +5,18 @@ import java.io.InputStream;
 import com.jayway.jsonpath.JsonPath;
 import net.minidev.json.JSONArray;
 
-//Example code
 public class WikipediaRevisionParser {
-    //WikipediaRevisionParser now returns a revision object
-    public Revision parse(InputStream testDataStream) throws IOException {
 
+    //WikipediaRevisionParser now can parse both a timestamp and an author
+    public String parseTimestamp(InputStream testDataStream) throws IOException {
         JSONArray result = (JsonPath.read(testDataStream, "$..timestamp"));
-        Revision revision = new Revision("test", result.get(0).toString());
-        return revision;
+        String timestamp = result.get(0).toString();
+        return timestamp;
+    }
+    public String parseAuthor(InputStream testDataStream) throws IOException {
+        JSONArray result = (JsonPath.read(testDataStream, "$..user"));
+        String author = result.get(0).toString();
+        return author;
     }
 
 }

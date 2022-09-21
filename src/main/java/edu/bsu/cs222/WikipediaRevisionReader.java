@@ -15,13 +15,14 @@ public class WikipediaRevisionReader {
     public static void main(String[] args) {
         WikipediaRevisionReader revisionReader = new WikipediaRevisionReader();
         Scanner scanner = new Scanner(System.in);
-        String line = scanner.nextLine();
+        System.out.println("Enter an item to search: ");
+        String searchTopic = scanner.nextLine();
 
         try {
-            String timestamp = revisionReader.getLastRevisionOf(line);
+            String timestamp = revisionReader.getLastRevisionOf(searchTopic);
             System.out.println(timestamp);
         } catch (IOException ioException) {
-            System.err.println("network failure" + ioException.getMessage());
+            System.err.println("Network Failure" + ioException.getMessage());
         }
 
     }
@@ -35,7 +36,7 @@ public class WikipediaRevisionReader {
             connection.setRequestProperty("User-Agent", "janeeb@bsu.edu");
             InputStream inputStream = connection.getInputStream();
             WikipediaRevisionParser parser = new WikipediaRevisionParser();
-            String timestamp = parser.parse(inputStream);
+            String timestamp = parser.parseTimestamp(inputStream);
             return timestamp;
 
         } catch (MalformedURLException malformedURLException) {
