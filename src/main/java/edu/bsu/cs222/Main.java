@@ -33,7 +33,7 @@ public class Main {
             WikipediaRevisionFormatter wikipediaRevisionFormatter = new WikipediaRevisionFormatter();
             WikipediaRevisionFormatter.revisionFormatter(Result);
         } catch (IOException ioException) {
-            System.err.println("network failure" + ioException.getMessage());
+            System.err.println("Network Failure" + ioException.getMessage());
         }
     }
 

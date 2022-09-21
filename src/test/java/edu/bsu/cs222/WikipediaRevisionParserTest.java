@@ -16,6 +16,6 @@ public class WikipediaRevisionParserTest {
         WikipediaParser parser = new WikipediaParser();
         InputStream testDataStream = Thread.currentThread().getContextClassLoader().getResourceAsStream("test.json");
         Revision[] timestamp = (parser.parse(testDataStream));
-        Assertions.assertEquals("2022-09-13T02:55:19Z", timestamp[0].getTimeStamp());
+        Assertions.assertEquals("2022-09-13T02:55:19Z", timestamp[0].getTimestamp());
     }
 }
