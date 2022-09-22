@@ -8,18 +8,18 @@ public class Main {
         int numberOfRevisions = 30;
 
         Scanner scanner = new Scanner(System.in);
-        String line = scanner.nextLine();
-        if (line.isBlank()) {
-            System.err.println("No title entered");
+        String usersTitle = scanner.nextLine();
+        if (usersTitle.isBlank()) {
+            System.err.println("No Title Entered");
             System.exit(1);
         }
 
         try {
-            Revision[] Result = GetRevisions.getLastRevisions(line, numberOfRevisions);
-            String output = RevisionFormatter.Formatter(Result, numberOfRevisions);
-            System.out.println(output);
+            Revision[] revisionList = GetRevisions.getLastRevisions(usersTitle, numberOfRevisions);
+            String formattedRevisions = RevisionFormatter.Formatter(revisionList, numberOfRevisions);
+            System.out.println(formattedRevisions);
         } catch (IOException ioException) {
-            System.err.println("network error" + ioException.getMessage());
+            System.err.println("Network Error" + ioException.getMessage());
             System.exit(3);
         }
     }
