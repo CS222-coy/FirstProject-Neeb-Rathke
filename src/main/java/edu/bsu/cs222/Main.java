@@ -3,12 +3,8 @@ package edu.bsu.cs222;
 import java.io.IOException;
 import java.util.Scanner;
 
-//TODO tell user about redirects
-//TODO make a system error if no name is given
-//TODO make an error for if there is no wikipedia page
 //TODO Finish writing tests
 //TODO Fix variable names
-//TODO Fix class names so they are standard
 
 public class Main {
     public static void main(String[] args) {
