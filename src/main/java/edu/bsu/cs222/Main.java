@@ -6,14 +6,16 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         int numberOfRevisions = 30;
-
         Scanner scanner = new Scanner(System.in);
         String usersTitle = scanner.nextLine();
+
+        //Exit with error 1 if no title is entered
         if (usersTitle.isBlank()) {
             System.err.println("No Title Entered");
             System.exit(1);
         }
 
+        //Try to run the program, but catch a network error
         try {
             Revision[] revisionList = GetRevisions.getLastRevisions(usersTitle, numberOfRevisions);
             String formattedRevisions = RevisionFormatter.Formatter(revisionList, numberOfRevisions);
