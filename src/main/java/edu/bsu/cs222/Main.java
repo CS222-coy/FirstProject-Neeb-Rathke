@@ -3,6 +3,11 @@ package edu.bsu.cs222;
 import java.io.IOException;
 import java.util.Scanner;
 
+//TODO move error handling to main, create custom exception and catch it in main
+//TODO move outputs to main
+//TODO create revision test
+//TODO create MainGUI that handles the gui
+
 public class Main {
     public static void main(String[] args) {
         int numberOfRevisions = 30;
