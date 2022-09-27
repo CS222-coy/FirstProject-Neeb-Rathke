@@ -29,7 +29,7 @@ public class RevisionParser {
 
         //If no page is found, exit with error 2
         } else {
-            System.err.println("Failed to find page for given title");
+            System.err.println("Failed to find page for given title ");
             System.exit(2);
         }
 

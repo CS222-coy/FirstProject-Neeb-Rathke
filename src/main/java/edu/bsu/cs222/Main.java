@@ -17,7 +17,7 @@ public class Main {
 
         //Exit with error 1 if no title is entered
         if (usersTitle.isBlank()) {
-            System.err.println("No Title Entered");
+            System.err.println("No Title Entered ");
             System.exit(1);
         }
 
