@@ -7,6 +7,7 @@ import java.util.Scanner;
 //TODO move outputs to main
 //TODO create revision test
 //TODO create MainGUI that handles the gui
+//TODO prompt user for input
 
 public class Main {
     public static void main(String[] args) {
@@ -26,7 +27,7 @@ public class Main {
             String formattedRevisions = RevisionFormatter.Formatter(revisionList, numberOfRevisions);
             System.out.println(formattedRevisions);
         } catch (IOException ioException) {
-            System.err.println("Network Error" + ioException.getMessage());
+            System.err.println("Network Error " + ioException.getMessage());
             System.exit(3);
         }
     }
