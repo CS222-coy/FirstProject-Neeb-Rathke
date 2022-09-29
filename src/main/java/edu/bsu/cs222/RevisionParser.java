@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 public class RevisionParser {
-    public static Revision[] parse(InputStream DataStream) throws IOException {
+    public static Revision[] parse(InputStream DataStream) throws IOException, CustomException {
         //General parsing of the information
         JSONArray WikiResult = (JsonPath.read(DataStream, "$..*"));
         JSONArray titleResult = JsonPath.read(WikiResult,"$..redirects..to");
@@ -29,11 +29,8 @@ public class RevisionParser {
 
         //If no page is found, exit with error 2
         } else {
-            System.err.println("Failed to find page for given title ");
-            System.exit(2);
+            throw new CustomException("Failed to find page for given title ");
         }
 
-        //Shouldn't happen  ¯\_(ツ)_/¯
-        return null;
     }
 }

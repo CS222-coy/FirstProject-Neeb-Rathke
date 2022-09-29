@@ -15,8 +15,12 @@ public class Main {
         String usersTitle = scanner.nextLine();
 
         //Exit with error 1 if no title is entered
-        if (usersTitle.isBlank()) {
-            System.err.println("No Title Entered ");
+        try {
+            if (usersTitle.isBlank()) {
+                throw new CustomException("No Title Entered ");
+            }
+        } catch (CustomException e) {
+            System.out.println(e);
             System.exit(1);
         }
 
@@ -28,6 +32,9 @@ public class Main {
         } catch (IOException ioException) {
             System.err.println("Network Error " + ioException.getMessage());
             System.exit(3);
+        } catch (CustomException e) {
+            System.out.println(e);
+            System.exit(2);
         }
     }
 
