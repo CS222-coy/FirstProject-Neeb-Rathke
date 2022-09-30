@@ -7,8 +7,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 public class RevisionParser {
-    public static Revision[] parse(InputStream DataStream) throws IOException {
-        String redirectResult = null;
+    public static Revision[] parse(InputStream DataStream) throws IOException, CustomException {
         //General parsing of the information
         JSONArray WikiResult = (JsonPath.read(DataStream, "$..*"));
         JSONArray titleResult = JsonPath.read(WikiResult,"$..redirects..to");
@@ -17,9 +16,7 @@ public class RevisionParser {
 
         //If there are multiple titles, redirects to the first one
         if (titleResult.size() > 0) {
-            redirectResult = titleResult.get(0).toString();
-            System.out.println("Redirected to " + redirectResult);
-
+            System.out.println("Redirected to " + titleResult.get(0).toString());
         }
 
         //Throws the revisions into a list
@@ -32,11 +29,7 @@ public class RevisionParser {
 
         //If no page is found, exit with error 2
         } else {
-            System.err.println("Failed to find page for given title ");
-            System.exit(2);
+            throw new CustomException("Failed to find page for given title ");
         }
-
-        //Shouldn't happen  ¯\_(ツ)_/¯
-        return null;
     }
 }
