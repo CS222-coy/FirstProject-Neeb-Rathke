@@ -1,5 +1,7 @@
 package edu.bsu.cs222;
 
+import com.jayway.jsonpath.JsonPath;
+import net.minidev.json.JSONArray;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -22,5 +24,13 @@ public class RevisionParserTest {
         InputStream testDataStream = Thread.currentThread().getContextClassLoader().getResourceAsStream("test.json");
         Revision[] user = (parser.parse(testDataStream));
         Assertions.assertEquals("2022-09-13T02:55:19Z", user[0].getTimeStamp());
+    }
+
+    @Test
+    public void testRedirect() throws IOException {
+        InputStream testDataStream = Thread.currentThread().getContextClassLoader().getResourceAsStream("test.json");
+        JSONArray titleResult = JsonPath.read(testDataStream,"$..redirects..to");
+        Assertions.assertEquals("[\"The Queen\"]", titleResult.toJSONString());
+
     }
 }
