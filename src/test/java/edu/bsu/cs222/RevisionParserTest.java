@@ -11,7 +11,7 @@ import java.io.InputStream;
 public class RevisionParserTest {
 
     @Test
-    public void testParseTimestamp() throws IOException {
+    public void testParseTimestamp() throws IOException, CustomException {
         RevisionParser parser = new RevisionParser();
         InputStream testDataStream = Thread.currentThread().getContextClassLoader().getResourceAsStream("test.json");
         Revision[] timestamp = (parser.parse(testDataStream));
@@ -19,7 +19,7 @@ public class RevisionParserTest {
     }
 
     @Test
-    public void testParseUser() throws IOException {
+    public void testParseUser() throws IOException, CustomException {
         RevisionParser parser = new RevisionParser();
         InputStream testDataStream = Thread.currentThread().getContextClassLoader().getResourceAsStream("test.json");
         Revision[] user = (parser.parse(testDataStream));
