@@ -27,7 +27,7 @@ public class Main {
         //Try to run the program, but catch a network error
         try {
             Revision[] revisionList = GetRevisions.getLastRevisions(usersTitle, numberOfRevisions);
-            String formattedRevisions = RevisionFormatter.Formatter(revisionList, numberOfRevisions);
+            String formattedRevisions = RevisionFormatter.formatter(revisionList, numberOfRevisions);
             System.out.println(formattedRevisions);
         } catch (IOException ioException) {
             System.err.println("Network Error " + ioException.getMessage());

@@ -2,7 +2,7 @@ package edu.bsu.cs222;
 
 public class RevisionFormatter {
 
-    public static String Formatter(Revision[] revisionList, int numberOfRevisions) {
+    public static String formatter(Revision[] revisionList, int numberOfRevisions) {
 
         //Revisions formatted to show each timestamp and the user/author
         String formattedString = "";
