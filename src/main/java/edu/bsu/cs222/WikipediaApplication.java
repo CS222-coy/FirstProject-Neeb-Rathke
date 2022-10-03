@@ -20,6 +20,7 @@ import java.util.concurrent.Executors;
 
 public class WikipediaApplication extends Application {
 
+    //Basic setup for the GUI
     Text sceneTitle = new Text("Let's check the revisions of a Wikipedia page! ");
     Text noTitleEnteredError = new Text();
     Text networkError = new Text();
@@ -32,6 +33,7 @@ public class WikipediaApplication extends Application {
 
     @Override
     public void start(Stage primaryStage) {
+        //All the grid alignment to make it look pretty
         GridPane grid = new GridPane();
         grid.setAlignment(Pos.CENTER);
         grid.setHgap(10);
@@ -45,6 +47,7 @@ public class WikipediaApplication extends Application {
         grid.add(networkError, 1, 2);
         grid.add(noPageFoundError, 1, 3);
 
+        //Button to activate the program
         startButton.setOnAction(new EventHandler<javafx.event.ActionEvent>() {
             @Override
             public void handle(javafx.event.ActionEvent event) {
@@ -56,7 +59,7 @@ public class WikipediaApplication extends Application {
         primaryStage.show();
     }
 
-
+//Main code to run the program as Main does
     private Parent createUI() {
             sceneTitle.setText("");
             startButton.setDisable(true);
@@ -65,6 +68,7 @@ public class WikipediaApplication extends Application {
 
                 String usersTitle = textField.getText();
                 int numberOfRevisions = 30;
+                //Try to begin program, catch the 'No Title Entered' error
                 try {
                     if (usersTitle.isBlank()) {
                         throw new CustomException("No Title Entered ");
@@ -73,12 +77,15 @@ public class WikipediaApplication extends Application {
                     noTitleEnteredError.setText(e.toString());
                 }
 
+                //Tries the basic program, will catch errors
                 try {
                     Revision[] revisionList = GetRevisions.getLastRevisions(usersTitle, numberOfRevisions);
                     String formattedRevisions = RevisionFormatter.formatter(revisionList, numberOfRevisions);
                     revisionsText.setText(formattedRevisions);
+                //Catch Network Error
                 } catch (IOException ioException) {
                     networkError.setText("Network Error " + ioException.getMessage());
+                //Catch No Page Found Error
                 } catch (CustomException e) {
                     noPageFoundError.setText(e.toString());
                 }
