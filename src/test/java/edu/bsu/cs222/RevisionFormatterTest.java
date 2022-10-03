@@ -11,7 +11,7 @@ public class RevisionFormatterTest {
     @Test
     public void testRevisionFormatter() throws IOException {
         RevisionFormatter revisionFormatter = new RevisionFormatter();
-        Revision revision = new Revision("Wiki13565", "2022-02-24T07:27:47Z");
+        Revision revision = new Revision("Wiki13565", "2022-02-24T07:27:47Z", null);
         Revision[] revisionList = new Revision[1];
         revisionList[0] = revision;
         String outputString = RevisionFormatter.Formatter(revisionList, 1);
