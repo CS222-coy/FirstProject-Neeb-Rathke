@@ -2,7 +2,6 @@ package edu.bsu.cs222;
 
 import javafx.application.Application;
 import javafx.application.Platform;
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
@@ -13,7 +12,6 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import java.awt.*;
 import java.io.IOException;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
@@ -48,12 +46,7 @@ public class WikipediaApplication extends Application {
         grid.add(noPageFoundError, 1, 3);
 
         //Button to activate the program
-        startButton.setOnAction(new EventHandler<javafx.event.ActionEvent>() {
-            @Override
-            public void handle(javafx.event.ActionEvent event) {
-                createUI();
-            }
-        });
+        startButton.setOnAction(event -> createUI());
         Scene scene = new Scene(grid, 600, 600);
         primaryStage.setScene(scene);
         primaryStage.show();
