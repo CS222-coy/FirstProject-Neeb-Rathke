@@ -37,7 +37,7 @@ public class WikipediaApplication extends Application {
         grid.add(sceneTitle, 0, 0, 2, 1);
         grid.add(textField, 1, 1);
         grid.add(startButton, 1, 4);
-        grid.add(revisionsText, 1, 6);
+        grid.add(revisionsText, 1, 1);
 
         startButton.setOnAction(new EventHandler<javafx.event.ActionEvent>() {
             @Override
@@ -45,19 +45,20 @@ public class WikipediaApplication extends Application {
                 createUI();
             }
         });
-        Scene scene = new Scene(grid, 600, 500);
+        Scene scene = new Scene(grid, 600, 600);
         primaryStage.setScene(scene);
         primaryStage.show();
     }
 
 
     private Parent createUI() {
-        startButton.setOnAction((event) -> {
+            sceneTitle.setText("");
             startButton.setDisable(true);
             textField.setDisable(true);
             executor.execute(()->{
 
                 String usersTitle = textField.getText();
+                System.out.println(usersTitle);
                 int numberOfRevisions = 30;
                 try {
                     if (usersTitle.isBlank()) {
@@ -71,7 +72,8 @@ public class WikipediaApplication extends Application {
                 try {
                     Revision[] revisionList = GetRevisions.getLastRevisions(usersTitle, numberOfRevisions);
                     String formattedRevisions = RevisionFormatter.Formatter(revisionList, numberOfRevisions);
-                    System.out.println(formattedRevisions);
+                    //System.out.println(formattedRevisions);
+                    revisionsText.setText(formattedRevisions);
                 } catch (IOException ioException) {
                     System.err.println("Network Error " + ioException.getMessage());
                     System.exit(3);
@@ -85,7 +87,6 @@ public class WikipediaApplication extends Application {
                     textField.setDisable(false);
                 });
             });
-        });
 
 
         VBox vbox = new VBox();
