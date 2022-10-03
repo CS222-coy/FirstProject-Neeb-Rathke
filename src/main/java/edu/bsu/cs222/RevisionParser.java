@@ -29,7 +29,7 @@ public class RevisionParser {
 
         //If no page is found, exit with error 2
         } else {
-            throw new CustomException("Failed to find page for given title ");
+            throw new CustomException("Failed to find page for given title. ");
         }
     }
 }

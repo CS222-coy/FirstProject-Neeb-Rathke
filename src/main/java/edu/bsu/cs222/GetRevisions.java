@@ -16,7 +16,5 @@ public class GetRevisions {
         connection.setRequestProperty("User-Agent", "janeeb@bsu.edu");
         InputStream inputStream = connection.getInputStream();
         return RevisionParser.parse(inputStream);
-
-
     }
 }
