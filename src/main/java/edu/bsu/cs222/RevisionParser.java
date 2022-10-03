@@ -9,15 +9,14 @@ import java.io.InputStream;
 public class RevisionParser {
     public static Revision[] parse(InputStream DataStream) throws IOException, CustomException {
         //General parsing of the information
-        JSONArray WikiResult = (JsonPath.read(DataStream, "$..*"));
-        JSONArray titleResult = JsonPath.read(WikiResult,"$..redirects..to");
-        JSONArray timestampResult = JsonPath.read(WikiResult,"$..timestamp");
-        JSONArray userResult = JsonPath.read(WikiResult,"$..user");
 
-        //If there are multiple titles, redirects to the first one
-        if (titleResult.size() > 0) {
-            System.out.println("Redirected to " + titleResult.get(0).toString());
-        }
+        JSONArray wikiResult = (JsonPath.read(DataStream, "$..*"));
+        WikiResult newWikiResult = new WikiResult(DataStream);
+        String redirect = newWikiResult.getRedirect();
+        System.out.println(redirect);
+
+        JSONArray timestampResult = JsonPath.read(wikiResult,"$..timestamp");
+        JSONArray userResult = JsonPath.read(wikiResult,"$..user");
 
         //Throws the revisions into a list
         if (userResult.size() > 0) {
