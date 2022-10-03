@@ -64,7 +64,6 @@ public class WikipediaApplication extends Application {
             executor.execute(()->{
 
                 String usersTitle = textField.getText();
-                System.out.println(usersTitle);
                 int numberOfRevisions = 30;
                 try {
                     if (usersTitle.isBlank()) {
@@ -76,7 +75,7 @@ public class WikipediaApplication extends Application {
 
                 try {
                     Revision[] revisionList = GetRevisions.getLastRevisions(usersTitle, numberOfRevisions);
-                    String formattedRevisions = RevisionFormatter.Formatter(revisionList, numberOfRevisions);
+                    String formattedRevisions = RevisionFormatter.formatter(revisionList, numberOfRevisions);
                     revisionsText.setText(formattedRevisions);
                 } catch (IOException ioException) {
                     networkError.setText("Network Error " + ioException.getMessage());
