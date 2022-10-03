@@ -14,16 +14,18 @@ public class RevisionParser {
         JSONArray timestampResult = JsonPath.read(WikiResult,"$..timestamp");
         JSONArray userResult = JsonPath.read(WikiResult,"$..user");
 
-        //If there are multiple titles, redirects to the first one
-        if (titleResult.size() > 0) {
-            System.out.println("Redirected to " + titleResult.get(0).toString());
-        }
 
         //Throws the revisions into a list
         if (userResult.size() > 0) {
+            String redirect = "hello";
+
+            if (titleResult.size() > 0) {
+                redirect = "Redirected to " + titleResult.get(0).toString() + "\n" + "\n";
+            }
+
             Revision[] revisionList = new Revision[userResult.size()];
             for (int i = 0; i < userResult.size(); i++) {
-                Revision revision = new Revision(userResult.get(i).toString(), timestampResult.get(i).toString());
+                Revision revision = new Revision(userResult.get(i).toString(), timestampResult.get(i).toString(), redirect);
                 revisionList[i] = revision;
             } return revisionList;
 

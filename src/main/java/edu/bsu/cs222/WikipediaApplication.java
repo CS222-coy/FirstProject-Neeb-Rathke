@@ -21,6 +21,9 @@ import java.util.concurrent.Executors;
 public class WikipediaApplication extends Application {
 
     Text sceneTitle = new Text("Let's check the revisions of a Wikipedia page! ");
+    Text noTitleEnteredError = new Text();
+    Text networkError = new Text();
+    Text noPageFoundError = new Text();
     TextField textField = new TextField();
     Button startButton = new Button("Search Revisions");
     Text revisionsText = new Text();
@@ -38,6 +41,9 @@ public class WikipediaApplication extends Application {
         grid.add(textField, 1, 1);
         grid.add(startButton, 1, 4);
         grid.add(revisionsText, 1, 1);
+        grid.add(noTitleEnteredError, 1, 1);
+        grid.add(networkError, 1, 2);
+        grid.add(noPageFoundError, 1, 3);
 
         startButton.setOnAction(new EventHandler<javafx.event.ActionEvent>() {
             @Override
@@ -65,21 +71,17 @@ public class WikipediaApplication extends Application {
                         throw new CustomException("No Title Entered ");
                     }
                 } catch (CustomException e) {
-                    System.out.println(e);
-                    System.exit(1);
+                    noTitleEnteredError.setText(e.toString());
                 }
 
                 try {
                     Revision[] revisionList = GetRevisions.getLastRevisions(usersTitle, numberOfRevisions);
                     String formattedRevisions = RevisionFormatter.Formatter(revisionList, numberOfRevisions);
-                    //System.out.println(formattedRevisions);
                     revisionsText.setText(formattedRevisions);
                 } catch (IOException ioException) {
-                    System.err.println("Network Error " + ioException.getMessage());
-                    System.exit(3);
+                    networkError.setText("Network Error " + ioException.getMessage());
                 } catch (CustomException e) {
-                    System.out.println(e);
-                    System.exit(2);
+                    noPageFoundError.setText(e.toString());
                 }
 
                 Platform.runLater(()->{
