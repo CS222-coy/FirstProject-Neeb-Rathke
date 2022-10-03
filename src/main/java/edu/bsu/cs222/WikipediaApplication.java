@@ -14,6 +14,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import java.awt.*;
+import java.io.IOException;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
@@ -56,9 +57,28 @@ public class WikipediaApplication extends Application {
             textField.setDisable(true);
             executor.execute(()->{
 
-                String text = textField.getText();
-                int value = Integer.parseInt(text);
-                RevisionParser parser = new RevisionParser();
+                String usersTitle = textField.getText();
+                int numberOfRevisions = 30;
+                try {
+                    if (usersTitle.isBlank()) {
+                        throw new CustomException("No Title Entered ");
+                    }
+                } catch (CustomException e) {
+                    System.out.println(e);
+                    System.exit(1);
+                }
+
+                try {
+                    Revision[] revisionList = GetRevisions.getLastRevisions(usersTitle, numberOfRevisions);
+                    String formattedRevisions = RevisionFormatter.Formatter(revisionList, numberOfRevisions);
+                    System.out.println(formattedRevisions);
+                } catch (IOException ioException) {
+                    System.err.println("Network Error " + ioException.getMessage());
+                    System.exit(3);
+                } catch (CustomException e) {
+                    System.out.println(e);
+                    System.exit(2);
+                }
 
                 Platform.runLater(()->{
                     startButton.setDisable(false);
